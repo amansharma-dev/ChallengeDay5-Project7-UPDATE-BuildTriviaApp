@@ -4,15 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/trivia_app_title"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@color/colorTextTitle"
+        android:layout_marginTop="25dp"
+        />
+
+    <TextView
+        android:id="@+id/questionCounterTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+
+        android:text="@string/_0_out_of_100"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:textSize="21sp"
+        android:fontFamily="sans-serif"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:padding="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardMaxElevation="7dp"
+        app:cardCornerRadius="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/appTitle">
+
+        <TextView
+            android:id="@+id/answerCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="26sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorBackground"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/previousNextRootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        android:layout_marginTop="25dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/previousButton"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:background="@color/colorButton"
+            android:text="@string/previous"
+            android:textColor="@color/colorText"
+            android:textSize="21sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/colorButton"
+            android:text="@string/next"
+            android:textColor="@color/colorText"
+            android:textSize="21sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trueFalseRootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/previousNextRootLayout"
+        android:layout_marginTop="25dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/trueButton"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="5dp"
+            android:background="@color/colorTextTitle"
+            android:text="@string/trueButton"
+            android:textColor="@color/colorBackground"
+            android:textSize="21sp"
+            android:fontFamily="serif-monospace"
+            android:textStyle="bold"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/falseButton"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="5dp"
+            android:background="@color/colorTextTitle"
+            android:text="@string/falseButton"
+            android:textColor="@color/colorBackground"
+            android:textSize="21sp"
+            android:fontFamily="serif-monospace"
+            android:textStyle="bold"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
