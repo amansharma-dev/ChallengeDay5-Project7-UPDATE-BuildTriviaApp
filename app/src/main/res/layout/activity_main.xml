@@ -19,7 +19,7 @@
         android:textStyle="bold"
         android:fontFamily="sans-serif-thin"
         android:textColor="@color/colorTextTitle"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/cardView"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
 
         android:text="@string/_0_out_of_100"
@@ -41,12 +41,12 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:padding="10dp"
-        app:cardPreventCornerOverlap="true"
+        android:layout_height="220dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false"
         app:cardMaxElevation="7dp"
         app:cardCornerRadius="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,7 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="26sp"
+            android:padding="5dp"
+            android:textSize="24sp"
             android:fontFamily="sans-serif"
             android:textColor="@color/colorBackground"/>
 
@@ -91,6 +92,7 @@
             android:textAllCaps="false"/>
 
         <Button
+            android:id="@+id/nextButton"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_weight="1"
