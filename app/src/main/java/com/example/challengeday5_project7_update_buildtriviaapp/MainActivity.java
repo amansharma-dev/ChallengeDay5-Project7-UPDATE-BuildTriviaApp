@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void processFinished(ArrayList<Question> questionArrayList) {
 
                 answerTextViewCv.setText(questionArrayList.get(currentQuestionIndex).getAnswer());
+                counterQuestionTv.setText(currentQuestionIndex+" / "+questionArrayList.size());
                 Log.d(TAG, "processFinished: "+questionArrayList);
             }
         });
@@ -90,5 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateQuestion(){
         answerTextViewCv.setText(questionList.get(currentQuestionIndex).getAnswer());
+        counterQuestionTv.setText(currentQuestionIndex+" / "+questionList.size());
     }
 }
