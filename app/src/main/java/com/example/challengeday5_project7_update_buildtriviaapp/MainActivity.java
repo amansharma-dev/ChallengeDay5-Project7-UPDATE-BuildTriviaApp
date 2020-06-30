@@ -65,7 +65,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         highScore.setText(String.valueOf(sharedPrefs.getHighScore()));
 
         currentQuestionIndex = sharedPrefs.getState();
-        Log.d("GET", "onCreate: Current State "+sharedPrefs.getState());
+        Log.d("GET", "onCreate: Current Index State "+sharedPrefs.getState());
+
+        currentScore.setText(String.valueOf(sharedPrefs.getLastScore()));
+        Log.d("GET", "onCreate: Last Score"+initialCurrentScore);
 
         questionList = new QuestionBank().getQuestions(new AsyncRequest() {
             @Override
@@ -134,7 +137,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedPrefs.saveHighScore(initialCurrentScore);
         Log.d("SAVE", "onPause: Save HighScore "+initialCurrentScore);
         sharedPrefs.setState(currentQuestionIndex);
-        Log.d("SAVE", "onPause:Current Index "+currentQuestionIndex);
+        Log.d("SAVE", "onPause:Current Index State "+currentQuestionIndex);
+        sharedPrefs.setLastScore(initialCurrentScore);
+        Log.d("SAVE", "onPause: Save Score "+initialCurrentScore);
         super.onPause();
     }
 }
