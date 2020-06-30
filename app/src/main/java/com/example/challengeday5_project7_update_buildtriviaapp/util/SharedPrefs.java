@@ -26,4 +26,12 @@ public class SharedPrefs {
     public int getHighScore(){
         return sharedPreferences.getInt("high_score",0);
     }
+
+    public void setState(int index){
+        sharedPreferences.edit().putInt("current_state",index).apply();
+    }
+
+    public int getState(){
+        return sharedPreferences.getInt("current_state",0);
+    }
 }
