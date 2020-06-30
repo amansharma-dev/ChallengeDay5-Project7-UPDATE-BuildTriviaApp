@@ -3,6 +3,7 @@ package com.example.challengeday5_project7_update_buildtriviaapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.challengeday5_project7_update_buildtriviaapp.data.AsyncRequest;
 import com.example.challengeday5_project7_update_buildtriviaapp.data.QuestionBank;
 import com.example.challengeday5_project7_update_buildtriviaapp.model.Question;
+import com.example.challengeday5_project7_update_buildtriviaapp.util.SharedPrefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView currentScore;
     private TextView highScore;
 
-    private int initialCurrentScore;
-    private int initialHighScore;
+    private int initialCurrentScore =0;
     private int currentQuestionIndex = 0;
+    private SharedPrefs sharedPrefs;
 
 
     @Override
@@ -56,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nextBtn.setOnClickListener(this);
         trueBtn.setOnClickListener(this);
         falseBtn.setOnClickListener(this);
+
+        sharedPrefs = new SharedPrefs(this);
+
+        Log.d("GETHIGH", "onPause: HighScore "+sharedPrefs.getHighScore());
+        highScore.setText(String.valueOf(sharedPrefs.getHighScore()));
 
         questionList = new QuestionBank().getQuestions(new AsyncRequest() {
             @Override
@@ -87,10 +94,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.trueButton:
                 checkIfAnswerTrue(true);
+
                 break;
 
             case R.id.falseButton:
                 checkIfAnswerTrue(false);
+
                 break;
         }
     }
@@ -105,11 +114,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             initialCurrentScore += 10;
             currentScore.setText(String.valueOf(initialCurrentScore));
             Toast.makeText(getApplicationContext(),"Correct Answer",Toast.LENGTH_SHORT).show();
+            currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
+            updateQuestion();
         }else
         {
             initialCurrentScore -= 5;
             currentScore.setText(String.valueOf(initialCurrentScore));
             Toast.makeText(getApplicationContext(),"Wrong Answer",Toast.LENGTH_SHORT).show();
+            currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
+            updateQuestion();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        sharedPrefs.saveHighScore(initialCurrentScore);
+        Log.d("SAVE", "onPause: Save HighScore "+initialCurrentScore);
+        super.onPause();
     }
 }
