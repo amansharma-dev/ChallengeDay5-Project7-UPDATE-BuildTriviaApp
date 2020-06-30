@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button nextBtn;
     private Button trueBtn;
     private Button falseBtn;
+    private TextView currentScore;
 
+    private int initialCurrentScore;
     private int currentQuestionIndex = 0;
 
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nextBtn = findViewById(R.id.nextButton);
         trueBtn = findViewById(R.id.trueButton);
         falseBtn = findViewById(R.id.falseButton);
+        currentScore = findViewById(R.id.currentScoreTextView);
 
         cardView.setCardBackgroundColor(getResources().getColor(R.color.colorTextTitle));
         previousBtn.setOnClickListener(this);
@@ -96,7 +99,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkIfAnswerTrue(boolean isAnswerTrue){
         boolean userAnswer = questionList.get(currentQuestionIndex).isAnswerTrue();
         if(userAnswer == isAnswerTrue){
+            initialCurrentScore += 10;
+            currentScore.setText(String.valueOf(initialCurrentScore));
             Toast.makeText(getApplicationContext(),"Correct Answer",Toast.LENGTH_SHORT).show();
-        }else Toast.makeText(getApplicationContext(),"Wrong Answer",Toast.LENGTH_SHORT).show();
+        }else
+        {
+            initialCurrentScore -= 5;
+            currentScore.setText(String.valueOf(initialCurrentScore));
+            Toast.makeText(getApplicationContext(),"Wrong Answer",Toast.LENGTH_SHORT).show();
+        }
     }
 }
