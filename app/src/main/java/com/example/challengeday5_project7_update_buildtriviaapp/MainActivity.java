@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentQuestionIndex = sharedPrefs.getState();
         Log.d("GET", "onCreate: Current Index State "+sharedPrefs.getState());
 
+        initialCurrentScore = sharedPrefs.getLastScore();
         currentScore.setText(String.valueOf(sharedPrefs.getLastScore()));
         Log.d("GET", "onCreate: Last Score"+initialCurrentScore);
 
