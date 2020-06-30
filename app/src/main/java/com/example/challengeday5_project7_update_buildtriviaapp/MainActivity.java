@@ -80,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.trueButton:
-
+                checkIfAnswerTrue(true);
                 break;
 
             case R.id.falseButton:
-
+                checkIfAnswerTrue(false);
                 break;
         }
     }
@@ -92,5 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateQuestion(){
         answerTextViewCv.setText(questionList.get(currentQuestionIndex).getAnswer());
         counterQuestionTv.setText(currentQuestionIndex+" / "+questionList.size());
+    }
+    private void checkIfAnswerTrue(boolean isAnswerTrue){
+        boolean userAnswer = questionList.get(currentQuestionIndex).isAnswerTrue();
+        if(userAnswer == isAnswerTrue){
+            Toast.makeText(getApplicationContext(),"Correct Answer",Toast.LENGTH_SHORT).show();
+        }else Toast.makeText(getApplicationContext(),"Wrong Answer",Toast.LENGTH_SHORT).show();
     }
 }
