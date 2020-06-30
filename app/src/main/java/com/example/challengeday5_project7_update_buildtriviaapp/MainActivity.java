@@ -29,8 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button trueBtn;
     private Button falseBtn;
     private TextView currentScore;
+    private TextView highScore;
 
     private int initialCurrentScore;
+    private int initialHighScore;
     private int currentQuestionIndex = 0;
 
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         trueBtn = findViewById(R.id.trueButton);
         falseBtn = findViewById(R.id.falseButton);
         currentScore = findViewById(R.id.currentScoreTextView);
+        highScore = findViewById(R.id.highScoreTextView);
 
         cardView.setCardBackgroundColor(getResources().getColor(R.color.colorTextTitle));
         previousBtn.setOnClickListener(this);
